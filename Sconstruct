@@ -1,0 +1,12 @@
+
+libopengl = 'GL' 
+libglu =  'GLU' 
+libglut = 'glut' 
+libX11 =  'X11'
+libXi  =  'Xi'
+libXmu =  'Xmu'
+
+ 
+env = Environment()
+
+env.Program(target='./build/shbvh', source=[Glob("./src/*.cpp")],CPPPATH=['./include','../../lib/thrust/'],LIBS=['gomp',libopengl,libglu,libglut,libX11,libXi,libXmu,'pthread'],CCFLAGS=['-Wall', '-fopenmp', '-DTHRUST_DEVICE_SYSTEM=THRUST_DEVICE_SYSTEM_OMP','-O3'])
