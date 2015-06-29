@@ -473,7 +473,8 @@ bool load_model_ssv(const std::string filename){
 	
 	vec3d half_size = bb.get_half_size();
 	vec3d center    = bb.get_center();
-	double scale_factor = 10/min(half_size);
+    
+	double scale_factor = (min(half_size) !=0 )?10/min(half_size):1;
 	
 	//rescaling the vertices	
 	for(size_t i = 0 ; i < num_verts; i++){
@@ -622,7 +623,6 @@ vec3f get_colour(GLfloat v,GLfloat vmin,GLfloat vmax)
 void draw_model(void){
     
 	if(model.vlist.size() != 0){	
-		
 		// activate and specify pointer to vertex array
 		glEnableClientState(GL_VERTEX_ARRAY);
 		glVertexPointer(3, GL_FLOAT, 0, vertices);
@@ -635,31 +635,32 @@ void draw_model(void){
 
 		
 		
-		//glBegin(GL_TRIANGLES);
-
-		//for(size_t i = 0; i < model.flist.size(); i++){
-			//vec3d  a = model.vlist[model.flist[i].a];
-			//vec3d  b = model.vlist[model.flist[i].b];
-			//vec3d  c = model.vlist[model.flist[i].c];
-			//////GLfloat ka = 1/(rho1[faces[i].x]*rho2[faces[i].x]);
-			//////GLfloat kb = 1/(rho1[faces[i].y]*rho2[faces[i].y]);
-			//////GLfloat kc = 1/(rho1[faces[i].z]*rho2[faces[i].z]);
-			//////vec3f ca = get_colour(ka,min_k,max_k);
-			//////vec3f cb = get_colour(kb,min_k,max_k);
-			//////vec3f cc = get_colour(kc,min_k,max_k);
-			////////printf("%f %f %f \n",ca.x, ca.y, ca.z);
-
-			//////glColor3f (ca.x, ca.y, ca.z);
-			//glVertex3f(a.x, a.y, a.z);
-					
-     		//////glColor3f (cb.x, cb.y, cb.z);
-			//glVertex3f(b.x, b.y, b.z);
-			
-			//////glColor3f (cc.x, cc.y, cc.z);
-			//glVertex3f(c.x, c.y, c.z);
-
-		//}	
-		//glEnd();
+// 		glBegin(GL_TRIANGLES);
+// 
+// 		for(size_t i = 0; i < model.flist.size(); i++){
+// 			vec3d  a = model.vlist[model.flist[i].a];
+// 			vec3d  b = model.vlist[model.flist[i].b];
+// 			vec3d  c = model.vlist[model.flist[i].c];
+//             std::cout << a << " " << b << " " << c << " " <<std::endl;
+// 			////GLfloat ka = 1/(rho1[faces[i].x]*rho2[faces[i].x]);
+// 			////GLfloat kb = 1/(rho1[faces[i].y]*rho2[faces[i].y]);
+// 			////GLfloat kc = 1/(rho1[faces[i].z]*rho2[faces[i].z]);
+// 			////vec3f ca = get_colour(ka,min_k,max_k);
+// 			////vec3f cb = get_colour(kb,min_k,max_k);
+// 			////vec3f cc = get_colour(kc,min_k,max_k);
+// 			//////printf("%f %f %f \n",ca.x, ca.y, ca.z);
+// 
+// 			////glColor3f (ca.x, ca.y, ca.z);
+// 			glVertex3f(a.x, a.y, a.z);
+// 					
+//      		////glColor3f (cb.x, cb.y, cb.z);
+// 			glVertex3f(b.x, b.y, b.z);
+// 			
+// 			////glColor3f (cc.x, cc.y, cc.z);
+// 			glVertex3f(c.x, c.y, c.z);
+// 
+// 		}	
+// 		glEnd();
         
 	}
 }
